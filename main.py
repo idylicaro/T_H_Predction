@@ -1,6 +1,6 @@
 SIZE_X = SIZE_Y = 3
 BIAS = 1
-EPOCHS = 20000
+EPOCHS = 1000
 LEARN_RATE = 0.2
 
 import random
@@ -29,7 +29,8 @@ def _update_weights(data, weights, bias,result, expected, learn_rate, size_x, si
     w = 1 
     for x in range(size_x):
         for y in range(size_y):
-            weights[w] = weights[w] + learn_rate * data[x][y] * (expected - result) 
+            weights[w] = weights[w] + learn_rate * data[x][y] * (expected - result)
+            w +=1 
 
 def train(data_set, prediction_set, weights, bias, learn_rate, size_x, size_y, epochs, display=False):
     for epoch in range(epochs):
@@ -78,7 +79,7 @@ data_set_result = [1,-1]
 
 weights = intialize_weight(SIZE_X * SIZE_Y)
 
-train(data_set,data_set_result, weights, BIAS, LEARN_RATE, SIZE_X, SIZE_Y, EPOCHS)
+train(data_set,data_set_result, weights, BIAS, LEARN_RATE, SIZE_X, SIZE_Y, EPOCHS, display=True)
 
 print(f'Test Result For T is: ({test([[1,1,1],[0,1,0],[0,1,0]], weights, BIAS, SIZE_X, SIZE_Y)})')
 print(f'Test Result for H is: ({test([[1,0,1],[1,1,1],[1,0,1]], weights, BIAS, SIZE_X, SIZE_Y)})')
